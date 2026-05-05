@@ -1,0 +1,43 @@
+version: "3"
+
+vars:
+  DOCKER_IMAGE_NAME: ghcr.io/abunjevac/snapboard-frontend
+  DOCKER_IMAGE_VERSION:
+    sh: tr -d '[:space:]' < .version
+
+tasks:
+  dev:
+    desc: Start Vite dev server
+    cmds:
+      - bun run dev
+
+  build:
+    desc: Build for production
+    cmds:
+      - bun run build
+
+  lint:
+    desc: Run ESLint
+    cmds:
+      - bun run lint
+
+  type-check:
+    desc: TypeScript type check
+    cmds:
+      - bun run type-check
+
+  docker:build:
+    desc: Build Docker image
+    cmds:
+      - docker build -t {{.DOCKER_IMAGE_NAME}}:{{.DOCKER_IMAGE_VERSION}} .
+
+  docker:push:
+    desc: Push Docker image to GHCR
+    cmds:
+      - docker push {{.DOCKER_IMAGE_NAME}}:{{.DOCKER_IMAGE_VERSION}}
+
+  docker:publish:
+    desc: Build and push Docker image
+    cmds:
+      - task: docker:build
+      - task: docker:push
