@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/privacy-policy")({
+export const Route = createFileRoute("/privacy")({
   component: PrivacyPolicyPage,
 });
 
@@ -11,7 +11,7 @@ function PrivacyPolicyPage() {
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
             <img src="/favicon.svg" alt="" className="h-6 w-6" />
-            <span className="text-2xl font-bold tracking-tight">snapboard</span>
+            <span className="text-2xl font-bold tracking-tight">Snapboard</span>
           </div>
         </div>
 
@@ -61,7 +61,14 @@ function PrivacyPolicyPage() {
             <p className="text-sm text-muted-foreground">
               Account information is retained while your account is active. You
               may request deletion of your account and associated data at any
-              time by contacting us.
+              time by contacting us at{" "}
+              <a
+                href="mailto:admin@exobyte.org"
+                className="underline underline-offset-2"
+              >
+                admin@exobyte.org
+              </a>
+              .
             </p>
           </section>
 
@@ -76,10 +83,10 @@ function PrivacyPolicyPage() {
 
         <div className="pt-4 border-t">
           <Link
-            to="/login"
+            to="/"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            ← Back to login
+            ← Back
           </Link>
         </div>
       </div>

@@ -9,8 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
-import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
@@ -18,14 +18,14 @@ import { Route as AuthSessionsRouteImport } from './routes/_auth.sessions'
 import { Route as AuthSessionsIndexRouteImport } from './routes/_auth.sessions.index'
 import { Route as AuthSessionsIdRouteImport } from './routes/_auth.sessions.$id'
 
-const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
-  id: '/terms-of-service',
-  path: '/terms-of-service',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
-  id: '/privacy-policy',
-  path: '/privacy-policy',
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -61,8 +61,8 @@ const AuthSessionsIdRoute = AuthSessionsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/privacy-policy': typeof PrivacyPolicyRoute
-  '/terms-of-service': typeof TermsOfServiceRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/sessions': typeof AuthSessionsRouteWithChildren
   '/sessions/$id': typeof AuthSessionsIdRoute
   '/sessions/': typeof AuthSessionsIndexRoute
@@ -70,8 +70,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/privacy-policy': typeof PrivacyPolicyRoute
-  '/terms-of-service': typeof TermsOfServiceRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/sessions/$id': typeof AuthSessionsIdRoute
   '/sessions': typeof AuthSessionsIndexRoute
 }
@@ -80,8 +80,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/login': typeof LoginRoute
-  '/privacy-policy': typeof PrivacyPolicyRoute
-  '/terms-of-service': typeof TermsOfServiceRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/_auth/sessions': typeof AuthSessionsRouteWithChildren
   '/_auth/sessions/$id': typeof AuthSessionsIdRoute
   '/_auth/sessions/': typeof AuthSessionsIndexRoute
@@ -91,26 +91,20 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
-    | '/privacy-policy'
-    | '/terms-of-service'
+    | '/privacy'
+    | '/terms'
     | '/sessions'
     | '/sessions/$id'
     | '/sessions/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/login'
-    | '/privacy-policy'
-    | '/terms-of-service'
-    | '/sessions/$id'
-    | '/sessions'
+  to: '/' | '/login' | '/privacy' | '/terms' | '/sessions/$id' | '/sessions'
   id:
     | '__root__'
     | '/'
     | '/_auth'
     | '/login'
-    | '/privacy-policy'
-    | '/terms-of-service'
+    | '/privacy'
+    | '/terms'
     | '/_auth/sessions'
     | '/_auth/sessions/$id'
     | '/_auth/sessions/'
@@ -120,24 +114,24 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   LoginRoute: typeof LoginRoute
-  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
-  TermsOfServiceRoute: typeof TermsOfServiceRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/terms-of-service': {
-      id: '/terms-of-service'
-      path: '/terms-of-service'
-      fullPath: '/terms-of-service'
-      preLoaderRoute: typeof TermsOfServiceRouteImport
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/privacy-policy': {
-      id: '/privacy-policy'
-      path: '/privacy-policy'
-      fullPath: '/privacy-policy'
-      preLoaderRoute: typeof PrivacyPolicyRouteImport
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -213,8 +207,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   LoginRoute: LoginRoute,
-  PrivacyPolicyRoute: PrivacyPolicyRoute,
-  TermsOfServiceRoute: TermsOfServiceRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
