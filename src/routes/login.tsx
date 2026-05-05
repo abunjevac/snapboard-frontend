@@ -1,5 +1,4 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/login")({
@@ -12,7 +11,7 @@ function LoginPage() {
       <div className="w-full max-w-sm space-y-8">
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <Zap className="h-8 w-8 text-primary" />
+            <img src="/favicon.svg" alt="" className="h-8 w-8" />
             <span className="text-3xl font-bold tracking-tight">snapboard</span>
           </div>
           <p className="text-muted-foreground text-sm">
