@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -71,6 +71,16 @@ function LoginPage() {
 
         <p className="text-center text-xs text-muted-foreground">
           Sessions are ephemeral. Content expires automatically.
+        </p>
+
+        <p className="text-center text-xs text-muted-foreground">
+          <Link to="/privacy-policy" className="hover:text-foreground transition-colors underline underline-offset-2">
+            Privacy Policy
+          </Link>
+          {" · "}
+          <Link to="/terms-of-service" className="hover:text-foreground transition-colors underline underline-offset-2">
+            Terms of Service
+          </Link>
         </p>
       </div>
     </div>
