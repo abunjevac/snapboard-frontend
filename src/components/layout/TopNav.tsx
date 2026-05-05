@@ -35,7 +35,7 @@ export function TopNav({ onNewSession }: TopNavProps) {
         : "System — click for light";
 
   return (
-    <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+    <header className="border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 sticky top-0 z-50">
       <div className="container mx-auto px-4 max-w-6xl h-14 flex items-center justify-between">
         <button
           className="flex items-center gap-2 font-bold text-lg hover:opacity-80 transition-opacity"
