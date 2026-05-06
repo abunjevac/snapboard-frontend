@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VerifyEmailRouteImport } from './routes/verify-email'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LoginRouteImport } from './routes/login'
@@ -18,6 +19,11 @@ import { Route as AuthSessionsRouteImport } from './routes/_auth.sessions'
 import { Route as AuthSessionsIndexRouteImport } from './routes/_auth.sessions.index'
 import { Route as AuthSessionsIdRouteImport } from './routes/_auth.sessions.$id'
 
+const VerifyEmailRoute = VerifyEmailRouteImport.update({
+  id: '/verify-email',
+  path: '/verify-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/verify-email': typeof VerifyEmailRoute
   '/sessions': typeof AuthSessionsRouteWithChildren
   '/sessions/$id': typeof AuthSessionsIdRoute
   '/sessions/': typeof AuthSessionsIndexRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/verify-email': typeof VerifyEmailRoute
   '/sessions/$id': typeof AuthSessionsIdRoute
   '/sessions': typeof AuthSessionsIndexRoute
 }
@@ -82,6 +90,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/verify-email': typeof VerifyEmailRoute
   '/_auth/sessions': typeof AuthSessionsRouteWithChildren
   '/_auth/sessions/$id': typeof AuthSessionsIdRoute
   '/_auth/sessions/': typeof AuthSessionsIndexRoute
@@ -93,11 +102,19 @@ export interface FileRouteTypes {
     | '/login'
     | '/privacy'
     | '/terms'
+    | '/verify-email'
     | '/sessions'
     | '/sessions/$id'
     | '/sessions/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/privacy' | '/terms' | '/sessions/$id' | '/sessions'
+  to:
+    | '/'
+    | '/login'
+    | '/privacy'
+    | '/terms'
+    | '/verify-email'
+    | '/sessions/$id'
+    | '/sessions'
   id:
     | '__root__'
     | '/'
@@ -105,6 +122,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/privacy'
     | '/terms'
+    | '/verify-email'
     | '/_auth/sessions'
     | '/_auth/sessions/$id'
     | '/_auth/sessions/'
@@ -116,10 +134,18 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
+  VerifyEmailRoute: typeof VerifyEmailRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/verify-email': {
+      id: '/verify-email'
+      path: '/verify-email'
+      fullPath: '/verify-email'
+      preLoaderRoute: typeof VerifyEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -209,6 +235,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
+  VerifyEmailRoute: VerifyEmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
