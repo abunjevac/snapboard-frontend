@@ -6,6 +6,7 @@ export const Route = createFileRoute("/")({
   beforeLoad: async () => {
     try {
       await authApi.me();
+
       throw redirect({ to: "/sessions" });
     } catch (e) {
       if (isRedirect(e)) throw e;
@@ -84,7 +85,7 @@ function HomePage() {
 
         <p className="text-center text-xs text-muted-foreground">
           <Link
-            to="/privacy"
+            to="/privacy-policy"
             className="hover:text-foreground transition-colors underline underline-offset-2"
           >
             Privacy Policy

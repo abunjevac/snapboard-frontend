@@ -73,7 +73,7 @@ function LoginPage() {
         </p>
 
         <p className="text-center text-xs text-muted-foreground">
-          <Link to="/privacy" className="hover:text-foreground transition-colors underline underline-offset-2">
+          <Link to="/privacy-policy" className="hover:text-foreground transition-colors underline underline-offset-2">
             Privacy Policy
           </Link>
           {" · "}
